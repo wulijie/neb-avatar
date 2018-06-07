@@ -1,6 +1,7 @@
 package org.devio.takephoto.compress;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 
 import org.devio.takephoto.model.LubanOptions;
 import org.devio.takephoto.model.TImage;
@@ -58,53 +59,53 @@ public class CompressWithLuBan implements CompressImage {
 
     private void compressOne() {
         Luban.compress(context, files.get(0))
-            .putGear(Luban.CUSTOM_GEAR)
-            .setMaxHeight(options.getMaxHeight())
-            .setMaxWidth(options.getMaxWidth())
-            .setMaxSize(options.getMaxSize() / 1000)
-            .launch(new OnCompressListener() {
-                @Override
-                public void onStart() {
+                .putGear(Luban.CUSTOM_GEAR)
+                .setMaxHeight(options.getMaxHeight())
+                .setMaxWidth(options.getMaxWidth())
+                .setMaxSize(options.getMaxSize() / 1000)
+                .launch(new OnCompressListener() {
+                    @Override
+                    public void onStart() {
 
-                }
+                    }
 
-                @Override
-                public void onSuccess(File file) {
-                    TImage image = images.get(0);
-                    image.setCompressPath(file.getPath());
-                    image.setCompressed(true);
-                    listener.onCompressSuccess(images);
-                }
+                    @Override
+                    public void onSuccess(File file) {
+                        TImage image = images.get(0);
+                        image.setCompressPath(file.getPath());
+                        image.setCompressed(true);
+                        listener.onCompressSuccess(images);
+                    }
 
-                @Override
-                public void onError(Throwable e) {
-                    listener.onCompressFailed(images, e.getMessage() + " is compress failures");
-                }
-            });
+                    @Override
+                    public void onError(Throwable e) {
+                        listener.onCompressFailed(images, e.getMessage() + " is compress failures");
+                    }
+                });
     }
 
     private void compressMulti() {
         Luban.compress(context, files)
-            .putGear(Luban.CUSTOM_GEAR)
-            .setMaxSize(options.getMaxSize() / 1000)                // limit the final image size（unit：Kb）
-            .setMaxHeight(options.getMaxHeight())             // limit image height
-            .setMaxWidth(options.getMaxWidth())
-            .launch(new OnMultiCompressListener() {
-                @Override
-                public void onStart() {
+                .putGear(Luban.CUSTOM_GEAR)
+                .setMaxSize(options.getMaxSize() / 1000)                // limit the final image size（unit：Kb）
+                .setMaxHeight(options.getMaxHeight())             // limit image height
+                .setMaxWidth(options.getMaxWidth())
+                .launch(new OnMultiCompressListener() {
+                    @Override
+                    public void onStart() {
 
-                }
+                    }
 
-                @Override
-                public void onSuccess(List<File> fileList) {
-                    handleCompressCallBack(fileList);
-                }
+                    @Override
+                    public void onSuccess(List<File> fileList) {
+                        handleCompressCallBack(fileList);
+                    }
 
-                @Override
-                public void onError(Throwable e) {
-                    listener.onCompressFailed(images, e.getMessage() + " is compress failures");
-                }
-            });
+                    @Override
+                    public void onError(Throwable e) {
+                        listener.onCompressFailed(images, e.getMessage() + " is compress failures");
+                    }
+                });
     }
 
     private void handleCompressCallBack(List<File> files) {

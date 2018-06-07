@@ -6,9 +6,9 @@ package com.zoke.neb.avatar;
 public interface Conf {
     boolean DEBUG = true;
     //合约地址
-    String ADDRESS = "n1veVQdZ4r791aAf6rxrHqZoJVRCuUE2dgv";
+    String ADDRESS = "n1jR4fv6zLgwDGxjmSGFRsYM6M5gmKto26c";
     //合约hash
-    String HASH = "741c9b30cfc2a42b73f4f161ef01ae7fd836972d6f95d49c553e9d975595d0c4";
+    String HASH = "6318d27f6e3554ef89fee7f7283dd5d17318f5a860103b0604973b832f0986d1";
 
     String VALUE = "100";
 

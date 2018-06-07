@@ -14,16 +14,20 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp">
+        android:layout_height="45dp">
 
 
-        <ImageView
+        <TextView
             android:id="@+id/iv_left"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:gravity="center"
             android:paddingLeft="15dp"
             android:paddingRight="15dp"
-            android:visibility="invisible" />
+            android:text="API接口"
+            android:textColor="@color/white"
+            android:textSize="13sp"
+            android:visibility="visible" />
 
 
         <TextView
@@ -38,15 +42,18 @@
             android:textSize="18sp" />
 
 
-        <ImageView
+        <TextView
             android:id="@+id/iv_right"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
+            android:gravity="center"
             android:paddingLeft="15dp"
             android:paddingRight="15dp"
-            android:visibility="invisible" />
-
+            android:text="我的头像"
+            android:textColor="@color/white"
+            android:textSize="13sp"
+            android:visibility="visible" />
 
     </RelativeLayout>
 

@@ -130,10 +130,6 @@ public class NebAvatar {
      * @param value        执行合约需要消耗的nas
      */
     private void post(@NonNull String functionName, @NonNull String[] args, @NonNull String smartAddress, @NonNull String value) {
-        if (activity == null) {
-            callback.onError("activity is null");
-            return;
-        }
         //初始化请求码
         int main_net = isMainNet ? Constants.MAIN_NET : Constants.TEST_NET;
         serialNumber = Util.getRandomCode(Constants.RANDOM_LENGTH);
@@ -182,7 +178,7 @@ public class NebAvatar {
      */
     public void get(String functionName, Object[] args, String userAddress, @NonNull final SmartCallback smartCallback) {
         if (args == null) args = new Object[]{};
-        callback.onStart();
+        smartCallback.onStart();
         ContractModel contractModel = new ContractModel();
         contractModel.args = Arrays.toString(args);//notice: Arrays.toString() was need , if not : {"error":"json: cannot unmarshal array into Go value of type string"}
         contractModel.function = functionName;
@@ -199,6 +195,18 @@ public class NebAvatar {
                 smartCallback.onError(error);
             }
         });
+    }
+
+    /**
+     * 调用call
+     *
+     * @param functionName
+     * @param args
+     */
+    public void call(@NonNull String functionName, @NonNull String[] args, @NonNull SmartCallback callback) {
+        this.callback = callback;
+        callback.onStart();
+        post(functionName, args, Conf.ADDRESS, Conf.VALUE);
     }
 
 
