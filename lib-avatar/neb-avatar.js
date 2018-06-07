@@ -11,7 +11,7 @@ var AvatarContract = function(){
 
 AvatarContract.prototype = {
     init: function() {
-        // this.avartarNums = 0
+        this.avartarNums = 0
     },
     //添加头像
     addAvartar: function(avatar) {
@@ -48,17 +48,17 @@ AvatarContract.prototype = {
         addAva.hash = obj.hash
 
         if(avatarList){
-        	avatarList.push(addAva)
+        	avatarList.unshift(addAva)
         }else{
         	avatarList =[]
-        	avatarList.push(addAva)
+        	avatarList.unshift(addAva)
         }
 
         if(avatarArray){
-        	avatarArray.push(addAva)
+        	avatarArray.unshift(addAva)
         }else{
         	avatarArray =[]
-        	avatarArray.push(addAva)
+        	avatarArray.unshift(addAva)
         }      
 
         var result = {
@@ -140,6 +140,7 @@ AvatarContract.prototype = {
         }
 
         result.total = this.avartarNums*1
+
         for (var i = 0; i < avatarArray.length; i++) {
         	result.data.push(avatarArray[i])
         }
