@@ -25,4 +25,12 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    debugImplementation 'com.zxy.android:recovery:0.1.6'
+    releaseImplementation 'com.zxy.android:recovery-no-op:0.1.6'
+    implementation 'com.gyf.barlibrary:barlibrary:2.3.0'
+    implementation 'org.xutils:xutils:3.5.0'
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.34'
+    implementation project(':lib-avatar')
+    implementation project(':lib-takephoto')
+    implementation 'com.google.code.gson:gson:2.8.2'
 }

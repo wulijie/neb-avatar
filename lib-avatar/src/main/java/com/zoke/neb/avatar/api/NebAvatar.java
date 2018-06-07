@@ -53,7 +53,7 @@ public class NebAvatar {
     /**
      * 在 activity 的 onResume() 生命周期方法内执行操作
      */
-    protected void onResume(Activity activity) {
+    public void onResume(Activity activity) {
         this.activity = activity;
         if (isDoing) {
             nasQueryTransferStatus();
