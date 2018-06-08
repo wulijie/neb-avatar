@@ -97,7 +97,7 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
             startActivity(new Intent(this, LoginActivity.class));
             return;
         }
-        NebAvatar.getInstance().getAvatarList(address, page, 40, new SmartCallback() {
+        NebAvatar.getInstance().getAvatarList(address, page, 5, new SmartCallback() {
             @Override
             public void onStart() {
             }
