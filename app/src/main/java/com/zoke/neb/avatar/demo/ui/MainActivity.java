@@ -174,7 +174,7 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
         super.onResume();
     }
 
-    @Event({R.id.btn_select})
+    @Event({R.id.btn_select, R.id.iv_left, R.id.iv_right})
     private void onViewClick(View view) {
         switch (view.getId()) {
             case R.id.btn_select:
@@ -187,6 +187,14 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
                 builder.setAspectX(800).setAspectY(800);
                 getTakePhoto().onEnableCompress(config, true);
                 getTakePhoto().onPickMultipleWithCrop(1, builder.create());
+                break;
+            case R.id.iv_left:
+                Intent intent = new Intent(MainActivity.this, WebActivity.class);
+                intent.putExtra("url", "http://www.baidu.com");
+                startActivity(intent);
+                break;
+            case R.id.iv_right:
+                startActivity(new Intent(MainActivity.this, MyActivity.class));
                 break;
         }
     }

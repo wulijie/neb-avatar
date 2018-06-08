@@ -164,7 +164,7 @@ public class NebAvatar {
      * @param callback    回调
      */
     public void getMyAvatarList(String fromAddress, @NonNull SmartCallback callback) {
-        get(Conf.FUNCTION_GET_MY_AVATAR_LIST, new String[]{fromAddress}, fromAddress, callback);
+        get(Conf.FUNCTION_GET_MY_AVATAR_LIST, new String[]{"\"" + fromAddress + "\""}, fromAddress, callback);
     }
 
 
@@ -181,6 +181,7 @@ public class NebAvatar {
         smartCallback.onStart();
         ContractModel contractModel = new ContractModel();
         contractModel.args = Arrays.toString(args);//notice: Arrays.toString() was need , if not : {"error":"json: cannot unmarshal array into Go value of type string"}
+        LogUtil.e("args = " + contractModel.args);
         contractModel.function = functionName;
         SmartContracts.call(contractModel, userAddress, Conf.ADDRESS, 1, new SmartContracts.StatusCallback() {
             @Override

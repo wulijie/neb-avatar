@@ -147,7 +147,6 @@ AvatarContract.prototype = {
 
         return result
     },
-
 };
 
 module.exports = AvatarContract;
