@@ -21,7 +21,8 @@ allprojects {
 }
 
 //去 realse 版本那查看最新版本
-implementation 'com.github.wulijie:ipfs:1.0'
+implementation 'com.github.wulijie:neb-avatar:1.0'
+
 ```
 
 ### 使用说明
@@ -92,3 +93,4 @@ public class App extends Application {
 
 效果：
 
+![](https://ws3.sinaimg.cn/large/006tNc79ly1fs3mg3m570j30ku13d0w9.jpg)
