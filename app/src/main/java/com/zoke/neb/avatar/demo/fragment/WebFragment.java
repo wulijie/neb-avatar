@@ -51,6 +51,7 @@ public class WebFragment extends BaseFragment {
         bundle.putString("url", url);
         fragment.setArguments(bundle);
         fragmentTransaction.replace(containerViewId, fragment);
+        fragmentTransaction.commit();
         return fragment;
     }
 

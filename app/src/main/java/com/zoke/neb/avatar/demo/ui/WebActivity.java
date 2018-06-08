@@ -9,6 +9,7 @@ import com.zoke.neb.avatar.demo.base.BaseActivity;
 import com.zoke.neb.avatar.demo.fragment.WebFragment;
 
 import org.xutils.view.annotation.ContentView;
+import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
 
 @ContentView(R.layout.activity_web)
@@ -27,6 +28,7 @@ public class WebActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         iv_left.setText("返回");
+        tv_title.setText("");
         iv_right.setVisibility(View.INVISIBLE);
         url = getIntent().getStringExtra("url");
         WebFragment fragment = WebFragment.open(this, R.id.fl_web, url);
@@ -36,6 +38,11 @@ public class WebActivity extends BaseActivity {
                 tv_title.setText(title);
             }
         });
+    }
+
+    @Event({R.id.iv_left})
+    private void onViewClick(View v) {
+        onBackPressed();
     }
 
     @Override

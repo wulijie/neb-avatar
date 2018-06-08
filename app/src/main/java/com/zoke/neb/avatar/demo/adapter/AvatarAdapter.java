@@ -36,6 +36,7 @@ public class AvatarAdapter extends BaseQuickAdapter<Avatar, BaseViewHolder> {
                 .setLoadingDrawableId(R.drawable.ic_f_default)
                 .setFailureDrawableId(R.drawable.ic_f_default)
                 .build();
+        helper.addOnClickListener(R.id.headIv);
         x.image().bind(headIv, item.url, imageOptions);
         DecimalFormat fnum = new DecimalFormat("##0.00");
         float size = Float.parseFloat(item.size) / 1024.0f;

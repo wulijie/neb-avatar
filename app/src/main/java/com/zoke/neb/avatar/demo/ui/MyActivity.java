@@ -20,6 +20,7 @@ import com.zoke.neb.avatar.demo.adapter.AvatarAdapter;
 import com.zoke.neb.avatar.demo.base.BaseActivity;
 import com.zoke.neb.avatar.demo.model.AvatarResult;
 import com.zoke.neb.avatar.demo.tools.PersistTool;
+import com.zoke.neb.avatar.demo.tools.Util;
 import com.zoke.neb.avatar.http.SmartCallback;
 import com.zoke.neb.avatar.model.Avatar;
 
@@ -33,7 +34,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @ContentView(R.layout.activity_my)
-public class MyActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener, BaseQuickAdapter.RequestLoadMoreListener {
+public class MyActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener, BaseQuickAdapter.RequestLoadMoreListener, BaseQuickAdapter.OnItemClickListener {
 
     @ViewInject(R.id.iv_left)
     TextView iv_left;
@@ -66,6 +67,7 @@ public class MyActivity extends BaseActivity implements SwipeRefreshLayout.OnRef
         adapter.openLoadAnimation();
         adapter.setOnLoadMoreListener(this, recycler);
         refreshLayout.setRefreshing(true);
+        adapter.setOnItemClickListener(this);
         page = 0;
         getAvatarList();
     }
@@ -181,5 +183,11 @@ public class MyActivity extends BaseActivity implements SwipeRefreshLayout.OnRef
     public void onLoadMoreRequested() {
         page++;
         getAvatarList();
+    }
+
+    @Override
+    public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+        Avatar avatar = mList.get(position);
+        Util.openBrowser(MyActivity.this, avatar.url);
     }
 }

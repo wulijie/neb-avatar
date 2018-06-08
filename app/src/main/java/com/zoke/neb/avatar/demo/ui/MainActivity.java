@@ -24,6 +24,7 @@ import com.zoke.neb.avatar.demo.dialog.AppLoading;
 import com.zoke.neb.avatar.demo.model.AvatarResult;
 import com.zoke.neb.avatar.demo.model.Result;
 import com.zoke.neb.avatar.demo.tools.PersistTool;
+import com.zoke.neb.avatar.demo.tools.Util;
 import com.zoke.neb.avatar.http.SmartCallback;
 import com.zoke.neb.avatar.model.Avatar;
 
@@ -42,7 +43,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @ContentView(R.layout.activity_main)
-public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener, BaseQuickAdapter.RequestLoadMoreListener {
+public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener, BaseQuickAdapter.RequestLoadMoreListener, BaseQuickAdapter.OnItemChildClickListener, BaseQuickAdapter.OnItemClickListener {
 
     private AppLoading loading;
 
@@ -85,6 +86,8 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
         recycler.setLayoutManager(new LinearLayoutManager(this));
         adapter.openLoadAnimation();
         adapter.setOnLoadMoreListener(this, recycler);
+        adapter.setOnItemChildClickListener(this);
+        adapter.setOnItemClickListener(this);
         refreshLayout.setRefreshing(true);
         page = 0;
         getAvatarList();
@@ -97,7 +100,7 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
             startActivity(new Intent(this, LoginActivity.class));
             return;
         }
-        NebAvatar.getInstance().getAvatarList(address, page, 5, new SmartCallback() {
+        NebAvatar.getInstance().getAvatarList(address, page, 15, new SmartCallback() {
             @Override
             public void onStart() {
             }
@@ -190,7 +193,7 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
                 break;
             case R.id.iv_left:
                 Intent intent = new Intent(MainActivity.this, WebActivity.class);
-                intent.putExtra("url", "http://www.baidu.com");
+                intent.putExtra("url", "file:///android_asset/new-avatar使用说明.html");
                 startActivity(intent);
                 break;
             case R.id.iv_right:
@@ -271,5 +274,16 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
     public void onLoadMoreRequested() {
         page++;
         getAvatarList();
+    }
+
+    @Override
+    public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+
+    }
+
+    @Override
+    public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+        Avatar avatar = mList.get(position);
+        Util.openBrowser(MainActivity.this, avatar.url);
     }
 }

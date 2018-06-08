@@ -1,6 +1,10 @@
 # neb-avatar 使用说明
 
-`neb-avatar` 旨在为 Android 人员 开发无法存储头像的问题。在使用过程中如遇到问题，可联系 `androidzk@163.com` 或者在[ neb-avatar](https://github.com/wulijie/neb-avatar) 的 `Issues`  提问。
+`neb-avatar` 旨在为 Android开发星云链Dapp的过程中解决无法存储头像的问题。
+
+在使用过程中如遇到问题，可联系 `androidzk@163.com` 或者在[ neb-avatar](https://github.com/wulijie/neb-avatar) 的 `Issues`  提问。
+
+**技术说明：**
 
 - 信息记录基于`星云链`
 
